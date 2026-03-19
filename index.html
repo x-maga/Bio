@@ -3,283 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThisMaga | Aurora Bio</title>
+    <title>ThisMaga | Advanced Bio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #030712;
-            --card: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --accent: #00f2ff;
-            --accent-glow: rgba(0, 242, 255, 0.4);
+            --card: rgba(255, 255, 255, 0.05);
+            --accent: #38bdf8;
             --text: #ffffff;
-            --sec-text: #cbd5e1;
+            --sec-text: #94a3b8;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            display: flex;
-            justify-content: center;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
+            display: flex; justify-content: center;
+            min-height: 100vh; overflow-x: hidden;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #030712 100%);
         }
 
-        /* --- Animated Aurora Background --- */
-        .aurora-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            overflow: hidden;
-            background: linear-gradient(125deg, #030712 0%, #0f172a 100%);
-        }
+        .container { width: 100%; max-width: 420px; padding: 40px 20px; z-index: 1; }
 
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: blob-float 20s infinite alternate;
-        }
-
-        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: #9333ea; animation-delay: 0s; } /* Purple */
-        .blob-2 { bottom: -10%; right: -10%; width: 350px; height: 350px; background: #0ea5e9; animation-delay: -5s; } /* Blue */
-        .blob-3 { top: 40%; left: 30%; width: 300px; height: 300px; background: #ec4899; animation-delay: -10s; } /* Pink */
-
-        @keyframes blob-float {
-            0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -50px) scale(1.1); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
-
-        /* Container */
-        .container {
-            width: 100%;
-            max-width: 430px;
-            padding: 50px 20px;
-            z-index: 1;
-        }
-
-        /* --- Profile Header (Glassmorphism) --- */
-        .profile-box {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(20px);
-            padding: 35px 25px;
-            border-radius: 35px;
-            text-align: center;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .profile-box::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: 35px;
-            box-shadow: inset 0 0 15px rgba(255,255,255,0.05);
-            pointer-events: none;
-        }
-
-        .pp-wrapper {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 18px;
-            position: relative;
-        }
-
-        .pp-wrapper img {
-            width: 100%;
-            height: 100%;
-            border-radius: 30px;
-            object-fit: cover;
-            border: 2px solid rgba(255,255,255,0.2);
-            box-shadow: 0 0 25px rgba(255,255,255,0.1);
-        }
-
-        .username { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 5px; }
-
-        /* Modern Navigation Tabs */
-        .tabs {
-            display: flex;
-            background: rgba(0,0,0,0.3);
-            padding: 7px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 14px;
-            border: none;
-            background: transparent;
-            color: var(--sec-text);
-            cursor: pointer;
-            font-weight: 600;
-            border-radius: 16px;
-            transition: 0.3s ease;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-
-        .tab-btn.active {
-            background: rgba(255,255,255,0.08);
-            color: #fff;
+        /* Profile & Contact Mini */
+        .profile-header {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 25px;
+            display: flex; align-items: center; gap: 15px;
+            margin-bottom: 25px;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Sections */
-        .content-section { display: none; animation: tabFadeIn 0.6s ease; }
-        .content-section.active { display: block; }
-
-        @keyframes tabFadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- Cards Style --- */
-        .card {
-            background: var(--card);
-            backdrop-filter: blur(10px);
-            padding: 22px;
-            border-radius: 25px;
-            margin-bottom: 18px;
-            border: 1px solid var(--card-border);
-            transition: 0.3s ease;
-            cursor: pointer;
+        .pp-mini {
+            width: 65px; height: 65px;
+            border-radius: 18px;
+            border: 2px solid var(--accent);
+            object-fit: cover;
         }
 
-        .card:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-4px);
+        .header-info h1 { font-size: 1.3rem; font-weight: 700; }
+        .contact-mini {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--accent); color: #000;
+            padding: 4px 10px; border-radius: 10px;
+            text-decoration: none; font-size: 0.75rem; font-weight: 700;
+            margin-top: 5px; transition: 0.3s;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex; gap: 8px; margin-bottom: 25px;
+            background: rgba(0,0,0,0.2); padding: 5px; border-radius: 15px;
+        }
+        .tab-btn {
+            flex: 1; padding: 10px; border: none; background: transparent;
+            color: var(--sec-text); cursor: pointer; font-weight: 600;
+            border-radius: 10px; transition: 0.3s;
+        }
+        .tab-btn.active { background: var(--card); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+
+        /* Sections */
+        .content-section { display: none; animation: fadeIn 0.4s ease; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Cards */
+        .card {
+            background: var(--card); padding: 20px; border-radius: 20px;
+            margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer; transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+
+        .bot-row { display: flex; align-items: center; gap: 15px; }
+        .bot-pp-small { width: 45px; height: 45px; border-radius: 12px; }
+        .bot-short-info h3 { font-size: 1rem; color: var(--accent); }
+        .bot-short-info p { font-size: 0.8rem; color: var(--sec-text); }
+
+        /* --- MODAL (Bot Detail) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+            display: none; justify-content: center; align-items: center; z-index: 100;
+            padding: 20px;
+        }
+        .modal-card {
+            background: #111827; width: 100%; max-width: 380px;
+            border-radius: 30px; padding: 25px; border: 1px solid var(--accent);
+            position: relative; animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .modal-header { display: flex; gap: 20px; margin-bottom: 20px; align-items: flex-start; }
+        .modal-pp { width: 80px; height: 80px; border-radius: 20px; border: 2px solid var(--accent); }
+        .modal-title h2 { font-size: 1.4rem; margin-bottom: 5px; }
+        
+        .modal-stats { display: flex; gap: 10px; margin-bottom: 20px; }
+        .stat-badge {
+            background: rgba(255,255,255,0.05); padding: 8px 12px;
+            border-radius: 12px; font-size: 0.75rem; flex: 1; text-align: center;
+        }
+        .stat-badge i { color: var(--accent); margin-bottom: 4px; display: block; }
+
+        .modal-about { font-size: 0.9rem; line-height: 1.6; color: var(--sec-text); margin-bottom: 25px; }
+        
+        .close-btn {
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(255,255,255,0.1); border: none; color: #fff;
+            width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
+        }
+
+        .go-bot-btn {
+            display: block; width: 100%; background: var(--accent);
+            color: #000; text-align: center; padding: 15px;
+            border-radius: 15px; text-decoration: none; font-weight: 700;
         }
 
         /* Lang Bar */
-        .lang-bar { display: flex; gap: 10px; margin-bottom: 18px; justify-content: center;}
-        .lang-dot {
-            font-size: 0.75rem;
-            padding: 6px 14px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.05);
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        .lang-bar { display: flex; gap: 10px; margin-bottom: 15px; justify-content: center; }
+        .lang-dot { font-size: 0.7rem; padding: 5px 12px; border-radius: 8px; background: rgba(255,255,255,0.05); cursor: pointer; }
         .lang-dot.active { background: #fff; color: #000; font-weight: 700; }
-
-        /* --- Bot Cards with Images --- */
-        .bot-card-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .bot-pp {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
-            border: 1px solid rgba(255,255,255,0.1);
-            object-fit: cover;
-        }
-
-        .bot-info-text { flex: 1; }
-
-        /* Pulse Status */
-        .status-online {
-            display: inline-flex; align-items: center; gap: 5px;
-            font-size: 0.7rem; color: #22c55e;
-            background: rgba(34, 197, 94, 0.1);
-            padding: 4px 10px; border-radius: 20px;
-            margin-bottom: 5px;
-        }
-        .pulse { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse-animation 1.5s infinite; }
-        @keyframes pulse-animation { 0% { box-shadow: 0 0 0 0px rgba(34, 197, 94, 0.7); } 100% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); } }
-
-        .social-btn {
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            background: rgba(255,255,255,0.05);
-            color: white;
-            text-decoration: none;
-            padding: 18px; border-radius: 20px;
-            font-weight: 700;
-            border: 1px solid var(--card-border);
-            transition: 0.3s;
-        }
-        .social-btn:hover { background: #fff; color: #000; }
-
     </style>
 </head>
 <body>
 
-<div class="aurora-bg">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-</div>
-
 <div class="container">
-    <div class="profile-box">
-        <div class="pp-wrapper">
-            <img src="https://t.me/i/userpic/320/ThisMaga.jpg" alt="ThisMaga">
+    <div class="profile-header">
+        <img src="https://t.me/i/userpic/320/ThisMaga.jpg" class="pp-mini" alt="ThisMaga">
+        <div class="header-info">
+            <h1>ThisMaga</h1>
+            <a href="https://t.me/ThisMaga" class="contact-mini">
+                <i class="fab fa-telegram-plane"></i> Telegram
+            </a>
         </div>
-        <h1 class="username">ThisMaga</h1>
-        <p style="color: var(--sec-text); font-weight: 500; font-size: 0.95rem; margin-top: -5px;">@ThisMaga</p>
     </div>
 
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('main', this)">
-            <i class="fas fa-user"></i> Main
-        </button>
-        <button class="tab-btn" onclick="showTab('bots', this)">
-            <i class="fas fa-code-branch"></i> Bots
-        </button>
+        <button class="tab-btn active" onclick="showTab('main', this)">Main</button>
+        <button class="tab-btn" onclick="showTab('bots', this)">Bots</button>
     </div>
 
     <div id="main" class="content-section active">
-        <div class="card" style="cursor: default;">
+        <div class="card" style="cursor: default; text-align: center;">
             <div class="lang-bar">
                 <span class="lang-dot active" onclick="changeLang('az')">AZ</span>
                 <span class="lang-dot" onclick="changeLang('tr')">TR</span>
                 <span class="lang-dot" onclick="changeLang('en')">EN</span>
             </div>
-            <p id="about-text" style="font-size: 0.95rem; line-height: 1.8; color: var(--sec-text); text-align: center;">
+            <p id="about-text" style="color: var(--sec-text); font-size: 0.95rem; line-height: 1.7;">
                 Tərtibatçı və Bot Yaradıcısı. Layihələrimlə həyatı asanlaşdırmağı və rəqəmsal dünyada yeniliklər etməyi sevirəm.
             </p>
         </div>
-
-        <p style="font-size: 0.8rem; color: var(--sec-text); margin: 25px 0 12px 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Əlaqə</p>
-        <a href="https://t.me/ThisMaga" class="social-btn">
-            <i class="fab fa-telegram-plane" style="font-size: 1.3rem;"></i> Telegram Me
-        </a>
     </div>
 
     <div id="bots" class="content-section">
-        <div class="card" onclick="window.location.href='https://T.me/AzeCallBomberBot'">
-            <div class="bot-card-content">
-                <img src="https://t.me/i/userpic/320/AzeCallBomberBot.jpg" alt="Call Bomber PP" class="bot-pp">
-                <div class="bot-info-text">
-                    <div class="status-online"><div class="pulse"></div> <span class="status-text">Active</span></div>
-                    <h3 style="font-size: 1.1rem; margin-bottom: 2px;">AzeCallBomberBot</h3>
-                    <p id="bot1-info" style="font-size: 0.8rem; color: var(--sec-text);">Nömrələrə dayanmadan zəng göndər.</p>
+        <div class="card" onclick="openBotModal('bomber')">
+            <div class="bot-row">
+                <img src="https://t.me/i/userpic/320/AzeCallBomberBot.jpg" class="bot-pp-small">
+                <div class="bot-short-info">
+                    <h3>AzeCallBomberBot</h3>
+                    <p id="bot1-short">Zəng göndərmə servisi...</p>
                 </div>
-                <i class="fas fa-chevron-right" style="color: rgba(255,255,255,0.2); font-size: 0.9rem;"></i>
             </div>
         </div>
 
-        <div class="card" onclick="window.location.href='https://T.me/DijitalGiftsBot'">
-            <div class="bot-card-content">
-                <img src="https://t.me/i/userpic/320/DijitalGiftsBot.jpg" alt="Digital Gifts PP" class="bot-pp">
-                <div class="bot-info-text">
-                    <div class="status-online"><div class="pulse"></div> <span class="status-text">Active</span></div>
-                    <h3 style="font-size: 1.1rem; margin-bottom: 2px;">DijitalGiftsBot</h3>
-                    <p id="bot2-info" style="font-size: 0.8rem; color: var(--sec-text);">Coin yığıb hədiyyələr al.</p>
+        <div class="card" onclick="openBotModal('gifts')">
+            <div class="bot-row">
+                <img src="https://t.me/i/userpic/320/DijitalGiftsBot.jpg" class="bot-pp-small">
+                <div class="bot-short-info">
+                    <h3>DijitalGiftsBot</h3>
+                    <p id="bot2-short">Hədiyyə və Coin sistemi...</p>
                 </div>
-                <i class="fas fa-chevron-right" style="color: rgba(255,255,255,0.2); font-size: 0.9rem;"></i>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="botModal">
+    <div class="modal-card">
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+        <div class="modal-header">
+            <img src="" id="modalImg" class="modal-pp">
+            <div class="modal-title">
+                <h2 id="modalName">Bot Name</h2>
+                <div id="modalStatus" style="font-size: 0.8rem; color: #22c55e;">● Active</div>
+            </div>
+        </div>
+        <div class="modal-stats">
+            <div class="stat-badge"><i class="fas fa-users"></i><span id="statUsers">10k+</span></div>
+            <div class="stat-badge"><i class="fas fa-bolt"></i><span id="statSpeed">Fast</span></div>
+            <div class="stat-badge"><i class="fas fa-shield-alt"></i><span>Secure</span></div>
+        </div>
+        <p class="modal-about" id="modalAbout">Full description goes here...</p>
+        <a href="#" id="modalLink" class="go-bot-btn">Launch Bot</a>
     </div>
 </div>
 
@@ -291,22 +211,60 @@
         btn.classList.add('active');
     }
 
+    const botData = {
+        bomber: {
+            name: "AzeCallBomberBot",
+            img: "https://t.me/i/userpic/320/AzeCallBomberBot.jpg",
+            users: "200+",
+            link: "https://t.me/AzeCallBomberBot",
+            az: "Bu bot vasitəsilə istənilən nömrəyə dayanmadan zənglər göndərərək 'bomber' edə bilərsiniz. Tamamilə sürətli və effektivdir.",
+            tr: "Bu bot sayesinde herhangi bir numaraya kesintisiz aramalar göndererek 'bomber' yapabilirsiniz. Tamamen hızlı ve etkilidir.",
+            en: "With this bot, you can 'bomb' any number by sending non-stop calls. Fully fast and effective."
+        },
+        gifts: {
+            name: "DijitalGiftsBot",
+            img: "https://t.me/i/userpic/320/DijitalGiftsBot.jpg",
+            users: "250+",
+            link: "https://t.me/DijitalGiftsBot",
+            az: "Referans linkinizlə dostlarınızı dəvət edin, coinlər qazanın və müxtəlif rəqəmsal hədiyyələrə sahib olun.",
+            tr: "Referans linkinizle arkadaşlarınızı davet edin, coin kazanın ve çeşitli dijital hediyelere sahip olun.",
+            en: "Invite friends with your referral link, earn coins, and get various digital gifts."
+        }
+    };
+
+    let currentLang = 'az';
+
+    function openBotModal(key) {
+        const bot = botData[key];
+        document.getElementById('modalImg').src = bot.img;
+        document.getElementById('modalName').innerText = bot.name;
+        document.getElementById('statUsers').innerText = bot.users;
+        document.getElementById('modalAbout').innerText = bot[currentLang];
+        document.getElementById('modalLink').href = bot.link;
+        document.getElementById('botModal').style.display = 'flex';
+    }
+
+    function closeModal() { document.getElementById('botModal').style.display = 'none'; }
+
     const dict = {
-        az: { about: "Tərtibatçı və Bot Yaradıcısı. Layihələrimlə həyatı asanlaşdırmağı və rəqəmsal dünyada yeniliklər etməyi sevirəm.", bot1: "Nömrələrə dayanmadan zəng göndər.", bot2: "Coin yığıb hədiyyələr al.", online: "Aktiv" },
-        tr: { about: "Geliştirici ve Bot Oluşturucu. Projelerimle hayatı kolaylaştırmayı ve dijital dünyada yenilik yapmayı seviyorum.", bot1: "Numaralara kesintisiz arama gönder.", bot2: "Jeton toplayıp hediyeler alın.", online: "Aktif" },
-        en: { about: "Developer & Bot Creator. I love making life easier with my projects and innovating in the digital world.", bot1: "Send non-stop calls to numbers.", bot2: "Collect coins and get gifts.", online: "Active" }
+        az: { about: "Tərtibatçı və Bot Yaradıcısı. Layihələrimlə həyatı asanlaşdırmağı və rəqəmsal dünyada yeniliklər etməyi sevirəm.", short1: "Zəng göndərmə servisi...", short2: "Hədiyyə və Coin sistemi..." },
+        tr: { about: "Geliştirici ve Bot Oluşturucu. Projelerimle hayatı kolaylaştırmayı ve dijital dünyada yenilik yapmayı seviyorum.", short1: "Arama gönderme servisi...", short2: "Hediye ve Coin sistemi..." },
+        en: { about: "Developer & Bot Creator. I love making life easier with my projects and innovating in the digital world.", short1: "Call sending service...", short2: "Gift and Coin system..." }
     };
 
     function changeLang(l) {
+        currentLang = l;
         document.getElementById('about-text').innerText = dict[l].about;
-        document.getElementById('bot1-info').innerText = dict[l].bot1;
-        document.getElementById('bot2-info').innerText = dict[l].bot2;
-        document.querySelectorAll('.status-text').forEach(el => el.innerText = dict[l].online);
-        
+        document.getElementById('bot1-short').innerText = dict[l].short1;
+        document.getElementById('bot2-short').innerText = dict[l].short2;
         document.querySelectorAll('.lang-dot').forEach(d => {
             d.classList.remove('active');
             if(d.innerText.toLowerCase() == l) d.classList.add('active');
         });
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('botModal')) closeModal();
     }
 </script>
 
