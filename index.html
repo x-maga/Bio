@@ -3,46 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-Maga | GitHub Pages & InfinityFree</title>
+    <title>Maga | Bio </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --success-color: #22c55e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            padding: 20px;
         }
+
         .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 1s ease-in;
         }
-        h1 { color: #2ecc71; }
-        p { color: #34495e; line-height: 1.6; }
-        .status {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 5px 15px;
-            background-color: #e8f5e9;
-            color: #2e7d32;
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            padding: 5px 12px;
             border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Profile Section */
+        .profile {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .bio { color: #94a3b8; font-size: 0.9rem; }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.1rem;
+            margin: 25px 0 15px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-color: var(--accent-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .bot-name { font-weight: bold; font-size: 1.1rem; color: var(--accent-color); }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--success-color);
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid var(--success-color);
+        }
+
+        .card-desc { font-size: 0.85rem; color: #cbd5e1; }
+
+        /* Social Links */
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #229ED9; /* Telegram Blue */
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            justify-content: center;
             font-weight: bold;
-            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5rem; }
+            .container { padding: 10px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Uğurlu Bağlantı! 🎉</h1>
-        <p>Təbriklər! Sənin GitHub Pages saytın artıq <strong>xmaga.gt.tc</strong> domeni üzərindən canlı yayımdadır.</p>
-        <div class="status">DNS Status: Aktiv ✅</div>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLang('az')">AZ</button>
+            <button class="lang-btn" onclick="setLang('tr')">TR</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+
+        <div class="profile">
+            <img src="https://via.placeholder.com/100" alt="X-Maga"> <h1 id="name">X-Maga</h1>
+            <p class="bio" id="main-bio">Developer & Bot Creator</p>
+        </div>
+
+        <div class="section-title" id="title-social">Sosial Mediya</div>
+        <a href="https://t.me/xmaga" class="card social-link">
+            <i class="fab fa-telegram"></i> Telegram
+        </a>
+
+        <div class="section-title" id="title-bots">Botlarım</div>
+
+        <a href="https://T.me/AzeCallBomberBot" class="card">
+            <div class="card-header">
+                <span class="bot-name">AzeCallBomberBot</span>
+                <span class="status-badge" id="status-active">Active</span>
+            </div>
+            <p class="card-desc" id="bot1-desc">Nömrələrə dayanmadan zənglər göndərmək üçün bot.</p>
+        </a>
+
+        <a href="https://T.me/DijitalGiftsBot" class="card">
+            <div class="card-header">
+                <span class="bot-name">DijitalGiftsBot</span>
+                <span class="status-badge" id="status-active2">Active</span>
+            </div>
+            <p class="card-desc" id="bot2-desc">Referans linki ilə coin yığıb hədiyyələr qazanmaq üçün bot.</p>
+        </a>
+
+        <div class="section-title" id="title-channels">Kanallarım</div>
+        <a href="#" class="card">
+            <div class="card-header">
+                <span class="bot-name">X-Maga News</span>
+            </div>
+            <p class="card-desc" id="channel-desc">Yeniliklər və bot xəbərləri buradadır.</p>
+        </a>
     </div>
 
+    <script>
+        const translations = {
+            az: {
+                mainBio: "Tərtibatçı və Bot Yaradıcısı",
+                social: "Sosial Mediya",
+                bots: "Botlarım",
+                channels: "Kanallarım",
+                bot1: "Nömrələrə dayanmadan zəng göndərmək üçün ən yaxşı servis.",
+                bot2: "Referans linki ilə coinlər yığıb müxtəlif hədiyyələr almaq imkanı.",
+                channel: "Layihələrim haqqında ən son məlumatlar.",
+                active: "Aktiv"
+            },
+            tr: {
+                mainBio: "Geliştirici ve Bot Oluşturucu",
+                social: "Sosyal Medya",
+                bots: "Botlarım",
+                channels: "Kanallarım",
+                bot1: "Numaralara kesintisiz arama göndermek için en iyi servis.",
+                bot2: "Referans linki ile coin toplayıp çeşitli hediyeler alma imkanı.",
+                channel: "Projelerim hakkında en son haberler.",
+                active: "Aktif"
+            },
+            en: {
+                mainBio: "Developer & Bot Creator",
+                social: "Social Media",
+                bots: "My Bots",
+                channels: "My Channels",
+                bot1: "Best service for sending non-stop calls to numbers.",
+                bot2: "Collect coins via referral links and get various gifts.",
+                channel: "Latest updates about my projects.",
+                active: "Active"
+            }
+        };
+
+        function setLang(lang) {
+            // Update texts
+            document.getElementById('main-bio').innerText = translations[lang].mainBio;
+            document.getElementById('title-social').innerText = translations[lang].social;
+            document.getElementById('title-bots').innerText = translations[lang].bots;
+            document.getElementById('title-channels').innerText = translations[lang].channels;
+            document.getElementById('bot1-desc').innerText = translations[lang].bot1;
+            document.getElementById('bot2-desc').innerText = translations[lang].bot2;
+            document.getElementById('channel-desc').innerText = translations[lang].channel;
+            document.getElementById('status-active').innerText = translations[lang].active;
+            document.getElementById('status-active2').innerText = translations[lang].active;
+
+            // Update button styles
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');
+            });
+        }
+    </script>
 </body>
 </html>
