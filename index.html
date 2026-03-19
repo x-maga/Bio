@@ -3,68 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThisMaga | Bio & Projects</title>
+    <title>ThisMaga | Premium Bio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0b0f1a;
-            --card: #161d2f;
-            --accent: #00d2ff;
+            --bg: #050810;
+            --card: rgba(22, 29, 47, 0.7);
+            --accent: #00f2ff;
+            --accent-glow: rgba(0, 242, 255, 0.3);
             --text: #ffffff;
-            --secondary-text: #94a3b8;
+            --sec-text: #94a3b8;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
 
         body {
             background-color: var(--bg);
             color: var(--text);
             display: flex;
             justify-content: center;
+            overflow-x: hidden;
             min-height: 100vh;
-            padding: 20px;
         }
 
-        .container { width: 100%; max-width: 450px; }
+        /* Animated Background */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #111827 0%, #050810 100%);
+        }
 
-        /* Profile Header */
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 20px;
+            z-index: 1;
+        }
+
+        /* Glassmorphism Header */
         .profile-box {
             background: var(--card);
-            padding: 25px;
-            border-radius: 24px;
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 30px;
             text-align: center;
-            border: 1px solid rgba(0, 210, 255, 0.1);
-            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin-bottom: 25px;
+            position: relative;
         }
 
         .pp-wrapper {
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto 15px;
-            padding: 5px;
-            border: 2px solid var(--accent);
-            border-radius: 20px; /* Kvadratvari yuvarlaq */
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+            position: relative;
         }
 
         .pp-wrapper img {
             width: 100%;
             height: 100%;
-            border-radius: 15px;
+            border-radius: 25px;
             object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        .username { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
-        .handle { color: var(--accent); font-size: 0.9rem; opacity: 0.8; }
+        .username { font-size: 1.8rem; font-weight: 700; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* Tabs Navigation */
+        /* Modern Tabs */
         .tabs {
             display: flex;
-            background: var(--card);
-            padding: 8px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            gap: 5px;
+            background: rgba(255,255,255,0.05);
+            padding: 6px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .tab-btn {
@@ -72,90 +89,94 @@
             padding: 12px;
             border: none;
             background: transparent;
-            color: var(--secondary-text);
+            color: var(--sec-text);
             cursor: pointer;
             font-weight: 600;
-            border-radius: 12px;
-            transition: 0.3s;
+            border-radius: 15px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .tab-btn.active {
             background: var(--accent);
-            color: var(--bg);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        /* Content Sections */
-        .content-section { display: none; animation: slideUp 0.4s ease; }
+        /* Sections */
+        .content-section { display: none; animation: fadeIn 0.5s ease; }
         .content-section.active { display: block; }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-        /* Cards Style */
+        /* Advanced Cards */
         .card {
             background: var(--card);
-            padding: 18px;
-            border-radius: 18px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.2s;
-        }
-
-        .card:hover { border-color: var(--accent); transform: scale(1.02); }
-
-        .section-label {
-            font-size: 0.8rem;
-            color: var(--secondary-text);
-            text-transform: uppercase;
-            margin: 20px 0 10px 5px;
-            display: block;
-        }
-
-        /* Lang Switcher inside About */
-        .lang-bar {
-            display: flex;
-            gap: 10px;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 22px;
             margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
+        .card:hover {
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-3px);
+        }
+
+        .lang-bar { display: flex; gap: 8px; margin-bottom: 15px; }
         .lang-dot {
-            font-size: 0.75rem;
-            cursor: pointer;
-            padding: 4px 10px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.05);
-        }
-
-        .lang-dot.active { border: 1px solid var(--accent); color: var(--accent); }
-
-        /* Bot Status */
-        .status {
-            float: right;
             font-size: 0.7rem;
-            background: rgba(34, 197, 94, 0.1);
-            color: #22c55e;
-            padding: 2px 8px;
-            border-radius: 6px;
-            border: 1px solid #22c55e;
+            padding: 5px 12px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: 0.3s;
         }
+        .lang-dot.active { background: var(--accent); color: #000; font-weight: bold; }
+
+        /* Pulse Status */
+        .status-online {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.7rem;
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            float: right;
+        }
+        .pulse {
+            width: 6px; height: 6px; background: #22c55e; border-radius: 50%;
+            animation: pulse-animation 1.5s infinite;
+        }
+        @keyframes pulse-animation { 0% { box-shadow: 0 0 0 0px rgba(34, 197, 94, 0.7); } 100% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); } }
 
         .social-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            background: #229ED9;
+            gap: 12px;
+            background: linear-gradient(45deg, #229ED9, #38bdf8);
             color: white;
             text-decoration: none;
-            padding: 15px;
-            border-radius: 15px;
-            font-weight: bold;
+            padding: 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(34, 158, 217, 0.3);
+            transition: 0.3s;
         }
+        .social-btn:hover { transform: scale(1.03); filter: brightness(1.1); }
+
     </style>
 </head>
 <body>
+
+<div class="stars"></div>
 
 <div class="container">
     <div class="profile-box">
@@ -163,12 +184,16 @@
             <img src="https://t.me/i/userpic/320/ThisMaga.jpg" alt="ThisMaga">
         </div>
         <h1 class="username">ThisMaga</h1>
-        <p class="handle">@ThisMaga</p>
+        <p style="color: var(--accent); font-weight: bold; font-size: 0.9rem;">@ThisMaga</p>
     </div>
 
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('main', this)">Main</button>
-        <button class="tab-btn" onclick="showTab('bots', this)">Bots</button>
+        <button class="tab-btn active" onclick="showTab('main', this)">
+            <i class="fas fa-home"></i> Main
+        </button>
+        <button class="tab-btn" onclick="showTab('bots', this)">
+            <i class="fas fa-robot"></i> Bots
+        </button>
     </div>
 
     <div id="main" class="content-section active">
@@ -178,34 +203,28 @@
                 <span class="lang-dot" onclick="changeLang('tr')">TR</span>
                 <span class="lang-dot" onclick="changeLang('en')">EN</span>
             </div>
-            <p id="about-text" style="font-size: 0.95rem; line-height: 1.6;">
+            <p id="about-text" style="font-size: 0.95rem; line-height: 1.7; color: var(--sec-text);">
                 Tərtibatçı və Bot Yaradıcısı. Layihələrimlə həyatı asanlaşdırmağı və rəqəmsal dünyada yeniliklər etməyi sevirəm.
             </p>
         </div>
 
-        <span class="section-label" id="lbl-social">Sosial Mediya</span>
+        <p style="font-size: 0.8rem; color: var(--sec-text); margin: 20px 0 10px 5px; text-transform: uppercase; letter-spacing: 1px;">Əlaqə</p>
         <a href="https://t.me/ThisMaga" class="social-btn">
-            <i class="fab fa-telegram-plane"></i> Telegram (Mənimlə Əlaqə)
+            <i class="fab fa-telegram-plane" style="font-size: 1.4rem;"></i> Telegram Me
         </a>
     </div>
 
     <div id="bots" class="content-section">
-        <span class="section-label" id="lbl-mybots">Aktiv Botlar</span>
-        
-        <div class="card" onclick="window.location.href='https://T.me/AzeCallBomberBot'">
-            <span class="status">Online</span>
-            <h3 style="color: var(--accent);">AzeCallBomberBot</h3>
-            <p id="bot1-info" style="font-size: 0.85rem; margin-top: 5px; color: var(--secondary-text);">
-                Nömrələrə dayanmadan zəng göndərmək üçün xidmət.
-            </p>
+        <div class="card" onclick="window.location.href='https://T.me/AzeCallBomberBot'" style="cursor: pointer;">
+            <div class="status-online"><div class="pulse"></div> <span class="status-text">Online</span></div>
+            <h3 style="color: var(--accent); margin-bottom: 5px;">AzeCallBomberBot</h3>
+            <p id="bot1-info" style="font-size: 0.85rem; color: var(--sec-text);">Nömrələrə dayanmadan zəng göndərmək üçün xidmət.</p>
         </div>
 
-        <div class="card" onclick="window.location.href='https://T.me/DijitalGiftsBot'">
-            <span class="status">Online</span>
-            <h3 style="color: var(--accent);">DijitalGiftsBot</h3>
-            <p id="bot2-info" style="font-size: 0.85rem; margin-top: 5px; color: var(--secondary-text);">
-                Referans linkləri ilə coin toplayıb hədiyyələr al.
-            </p>
+        <div class="card" onclick="window.location.href='https://T.me/DijitalGiftsBot'" style="cursor: pointer;">
+            <div class="status-online"><div class="pulse"></div> <span class="status-text">Online</span></div>
+            <h3 style="color: var(--accent); margin-bottom: 5px;">DijitalGiftsBot</h3>
+            <p id="bot2-info" style="font-size: 0.85rem; color: var(--sec-text);">Referans linkləri ilə coin toplayıb hədiyyələr al.</p>
         </div>
     </div>
 </div>
@@ -219,35 +238,16 @@
     }
 
     const dict = {
-        az: {
-            about: "Tərtibatçı və Bot Yaradıcısı. Layihələrimlə həyatı asanlaşdırmağı və rəqəmsal dünyada yeniliklər etməyi sevirəm.",
-            bot1: "Nömrələrə dayanmadan zəng göndərmək üçün xidmət.",
-            bot2: "Referans linkləri ilə coin toplayıb hədiyyələr al.",
-            social: "Sosial Mediya",
-            mybots: "Botlarım"
-        },
-        tr: {
-            about: "Geliştirici ve Bot Oluşturucu. Projelerimle hayatı kolaylaştırmayı ve dijital dünyada yenilik yapmayı seviyorum.",
-            bot1: "Numaralara kesintisiz arama göndermek için bir hizmet.",
-            bot2: "Referans linkleri ile jeton toplayıp hediyeler alın.",
-            social: "Sosyal Medya",
-            mybots: "Botlarım"
-        },
-        en: {
-            about: "Developer & Bot Creator. I love making life easier with my projects and innovating in the digital world.",
-            bot1: "A service for sending non-stop calls to numbers.",
-            bot2: "Collect coins with referral links and get gifts.",
-            social: "Social Media",
-            mybots: "My Bots"
-        }
+        az: { about: "Tərtibatçı və Bot Yaradıcısı. Layihələrimlə həyatı asanlaşdırmağı və rəqəmsal dünyada yeniliklər etməyi sevirəm.", bot1: "Nömrələrə dayanmadan zəng göndərmək üçün xidmət.", bot2: "Referans linkləri ilə coin toplayıb hədiyyələr al.", online: "Aktiv" },
+        tr: { about: "Geliştirici ve Bot Oluşturucu. Projelerimle hayatı kolaylaştırmayı ve dijital dünyada yenilik yapmayı seviyorum.", bot1: "Numaralara kesintisiz arama göndermek için bir hizmet.", bot2: "Referans linkleri ile jeton toplayıp hediyeler alın.", online: "Aktif" },
+        en: { about: "Developer & Bot Creator. I love making life easier with my projects and innovating in the digital world.", bot1: "A service for sending non-stop calls to numbers.", bot2: "Collect coins with referral links and get gifts.", online: "Online" }
     };
 
     function changeLang(l) {
         document.getElementById('about-text').innerText = dict[l].about;
         document.getElementById('bot1-info').innerText = dict[l].bot1;
         document.getElementById('bot2-info').innerText = dict[l].bot2;
-        document.getElementById('lbl-social').innerText = dict[l].social;
-        document.getElementById('lbl-mybots').innerText = dict[l].mybots;
+        document.querySelectorAll('.status-text').forEach(el => el.innerText = dict[l].online);
         
         document.querySelectorAll('.lang-dot').forEach(d => {
             d.classList.remove('active');
