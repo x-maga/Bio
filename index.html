@@ -84,6 +84,36 @@
         }
         .contact-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent); }
 
+        /* --- MODERN LANGUAGE SELECTOR --- */
+        .lang-wrapper {
+            display: flex; justify-content: center; margin-bottom: 20px;
+        }
+        .lang-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; gap: 5px;
+        }
+        .lang-btn {
+            padding: 8px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--sec-text);
+            border: none;
+            background: transparent;
+            text-transform: uppercase;
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+
         /* --- About Card --- */
         .about-card {
             background: var(--card); backdrop-filter: blur(20px);
@@ -91,11 +121,7 @@
             border: 1px solid rgba(255,255,255,0.1);
             margin-bottom: 25px;
         }
-        .lang-bar { display: flex; gap: 8px; margin-bottom: 15px; justify-content: center; }
-        .lang-dot { font-size: 0.7rem; padding: 4px 12px; border-radius: 8px; background: rgba(255,255,255,0.05); cursor: pointer; transition: 0.3s; }
-        .lang-dot:hover { background: rgba(255,255,255,0.15); }
-        .lang-dot.active { background: #fff; color: #000; font-weight: 700; }
-        .about-content { font-size: 0.95rem; line-height: 1.7; color: var(--sec-text); text-align: center; }
+        .about-content { font-size: 0.95rem; line-height: 1.7; color: var(--sec-text); text-align: center; transition: 0.3s; }
 
         /* Tabs */
         .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
@@ -169,7 +195,7 @@
 
 <div id="preloader">
     <div class="loader-circle"></div>
-    <div class="loader-text">ThisMaga</div>
+    <div class="loader-text">Loading...</div>
 </div>
 
 <div class="aurora"><div class="blob"></div></div>
@@ -178,36 +204,38 @@
     <div class="profile-card">
         <img src="https://t.me/i/userpic/320/ThisMaga.jpg" class="pp-main" alt="ThisMaga">
         <div class="profile-info">
-            <h1>ThisMaga</h1>
+            <h1>ᴍᴀɢᴀ</h1>
             <span class="username-tag">@ThisMaga</span>
             <a href="https://t.me/ThisMaga" class="contact-btn">
                 <i class="fab fa-telegram-plane"></i> Telegram
             </a>
         </div>
     </div>
+    
+    <div class="lang-wrapper">
+        <div class="lang-panel">
+            <button class="lang-btn active" onclick="changeLang('az', this)">Az</button>
+            <button class="lang-btn" onclick="changeLang('tr', this)">Tr</button>
+            <button class="lang-btn" onclick="changeLang('en', this)">En</button>
+        </div>
+    </div>
 
     <div class="about-card">
-        <div class="lang-bar">
-            <span class="lang-dot active" onclick="changeLang('az')">AZ</span>
-            <span class="lang-dot" onclick="changeLang('tr')">TR</span>
-            <span class="lang-dot" onclick="changeLang('en')">EN</span>
-        </div>
         <p class="about-content" id="about-text">
-            Mən <b>ThisMaga</b>, innovativ botlar və rəqəmsal həllər üzrə ixtisaslaşmış bir tərtibatçıyam. Texnologiyanı gündəlik həyata inteqrasiya edərək işləri asanlaşdırmağı hədəfləyirəm.
+            Salam, Mən <B>Maga</B>. 2 İldir Ki, Frontend Developer Kimi Çalışıram. Məqsədim Azərbaycanda Böyümək, Və Azərbaycanı Qlobal Miqyasda Tanıtmaqdır. Texnologiyanı Sənətə Çevirərək, Gələcəyin Rəqəmsal Dünyasını İnşa Edirəm. ✨
         </p>
     </div>
 
     <div class="tabs">
         <button class="tab-btn active" onclick="showTab('main', this)">Projects</button>
-        <button class="tab-btn" onclick="showTab('bots', this)">Socials</button>
     </div>
 
     <div id="main" class="content-section active">
         <div class="bot-card" onclick="openBot('bomber')">
             <img src="https://t.me/i/userpic/320/AzeCallBomberBot.jpg" class="bot-img-sm">
             <div class="bot-txt-sm">
-                <h3>AzeCallBomberBot</h3>
-                <p id="bot1-sm">Zəng göndərmə xidməti...</p>
+                <h3>𝐂𝐚𝐥𝐥 𝐁𝐨𝐦𝐛𝐞𝐫 🤖</h3>
+                <p id="bot1-sm">Limitsiz Zəng Hücumu Sistemi ⚡🚀</p>
             </div>
             <i class="fas fa-chevron-right" style="margin-left: auto; color: var(--sec-text); font-size: 0.8rem;"></i>
         </div>
@@ -215,15 +243,11 @@
         <div class="bot-card" onclick="openBot('gifts')">
             <img src="https://t.me/i/userpic/320/DijitalGiftsBot.jpg" class="bot-img-sm">
             <div class="bot-txt-sm">
-                <h3>DijitalGiftsBot</h3>
-                <p id="bot2-sm">Referans və Hədiyyə sistemi...</p>
+                <h3>𝐃𝐢𝐣𝐢𝐭𝐚𝐥 𝐆𝐢𝐟𝐭𝐬 𝐁𝐨𝐭 🎁</h3>
+                <p id="bot2-sm">Referansla Coin Topla, Hədiyyə Al 🎁🔥</p>
             </div>
             <i class="fas fa-chevron-right" style="margin-left: auto; color: var(--sec-text); font-size: 0.8rem;"></i>
         </div>
-    </div>
-
-    <div id="bots" class="content-section">
-        <p style="text-align: center; color: var(--sec-text); margin-top: 20px;">Tezliklə yeni linklər əlavə olunacaq...</p>
     </div>
 </div>
 
@@ -271,24 +295,69 @@
         bomber: {
             name: "AzeCallBomberBot",
             img: "https://t.me/i/userpic/320/AzeCallBomberBot.jpg",
-            users: "5.5k+",
+            users: "200+",
             link: "https://t.me/AzeCallBomberBot",
-            az: "Bu bot Azərbaycan daxilində istənilən nömrəyə yüksək sürətli zəng 'bombardmanı' təşkil edir. Tamamilə avtomatlaşdırılmışdır.",
-            tr: "Bu bot Azerbaycan dahilinde herhangi bir numaraya yüksek hızlı arama 'bombardımanı' düzenler. Tamamen otomatiktir.",
-            en: "This bot organizes high-speed call 'bombing' to any number within Azerbaijan. It is fully automated."
+            az: "Bu Bot Vasitəsilə Azərbaycan, Və Bütün Ölkə Nömrələrinə Limitsiz Zəng Hücümları Edə Bilərsiniz. Tamamilə Anonim Və Təhlükəsizdir.",
+            tr: "BBu Bot Aracılığıyla Azerbaycan, Ve Tüm Dünya Numaralarına Sınırsız Arama Saldırıları Düzenleyebilirsiniz. Tamamen Anonim Ve Güvenlidir. ⚡🛡️",
+            en: "Through This Bot, You Can Launch Unlimited Call Attacks On Azerbaijan, And All International Numbers. It Is Completely Anonymous And Secure. ⚡🛡️"
         },
         gifts: {
             name: "DijitalGiftsBot",
             img: "https://t.me/i/userpic/320/DijitalGiftsBot.jpg",
-            users: "12k+",
+            users: "250+",
             link: "https://t.me/DijitalGiftsBot",
-            az: "DijitalGifts ilə dostlarınızı dəvət edərək coinlər qazanın və bu coinləri müxtəlif telegram premium və s. hədiyyələrə dəyişin.",
-            tr: "DijitalGifts ile arkadaşlarınızı davet ederek coin kazanın ve bu coinleri çeşitli hediyelere dönüştürün.",
-            en: "With DijitalGifts, invite your friends to earn coins and exchange them for various digital gifts."
+            az: "Bu Bot, Referans Linki İlə Coin Toplayıb, Həmin Coinlərlə Limitsiz Hədiyyələr Almaq Üçündür. Tamamilə Pulsuzdur. 🎁✨",
+            tr: "Bu Bot, Referans Linki İle Coin Toplayıp, Bu Coinlerle Sınırsız Hediyeler Almak İçindir. Tamamen Ücretsizdir. 🎁✨",
+            en: "This Bot Is For Collecting Coins Via Referral Links And Buying Unlimited Gifts With Those Coins. It Is Completely Free. 🎁✨"
         }
     };
 
     let curLang = 'az';
+
+const dict = {
+    az: { 
+        about: "Salam, Mən <b>Maga</b>. 2 İldir Ki, Frontend Developer Kimi Çalışıram. Məqsədim Azərbaycanda Böyümək, Və Azərbaycanı Qlobal Miqyasda Tanıtmaqdır. Texnologiyanı Sənətə Çevirərək, Gələcəyin Rəqəmsal Dünyasını İnşa Edirəm.✨", 
+        s1: "Ultra Sürətli Zəng Axını ⚡🚀", 
+        s2: "Dostlarını Dəvət Et, Hədiyyələr Qazan! 🎁🔥", 
+        online: "Aktiv", 
+        btn: "Botu Başlat" 
+    },
+    tr: { 
+        about: "Selam, Ben <b>Maga</b>. 2 Yıldır Frontend Developer Olarak Çalışıyorum. Amacım Azerbaycan'da Büyüme Kaydetmek, Ve Ülkemi Küresel Ölçekte Tanıtmaktır. Teknolojiyi Sanata Dönüştürerek, Geleceğin Dijital Dünyasını İnşa Ediyorum.✨", 
+        s1: "Hızlı Arama Servisi ⚡🚀", 
+        s2: "Arkadaşlarını Davet Et, Ödül Kazan! 🎁🔥", 
+        online: "Aktif", 
+        btn: "Botu Başlat" 
+    },
+    en: { 
+        about: "Hi, I Am <b>Maga</b>. I Have Been Working As A Frontend Developer For 2 Years. My Goal Is To Grow In Azerbaijan, And Represent My Country On A Global Scale. By Turning Technology Into Art, I Am Building The Digital World Of The Future.✨", 
+        s1: "Ultra Fast Call Bombing ⚡🚀", 
+        s2: "Invite Friends & Win Gifts! 🎁🔥", 
+        online: "Active", 
+        btn: "Launch Bot" 
+    }
+};
+    
+    function changeLang(l, btn) {
+        curLang = l;
+        const textEl = document.getElementById('about-text');
+        
+        // Soft Fade Animation
+        textEl.style.opacity = '0';
+        
+        setTimeout(() => {
+            textEl.innerHTML = dict[l].about;
+            document.getElementById('bot1-sm').innerText = dict[l].s1;
+            document.getElementById('bot2-sm').innerText = dict[l].s2;
+            document.getElementById('mOnline').innerText = dict[l].online;
+            document.getElementById('mLink').innerText = dict[l].btn;
+            textEl.style.opacity = '1';
+        }, 200);
+
+        // Active Button Class
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
 
     function openBot(k) {
         const b = botData[k];
@@ -301,26 +370,6 @@
     }
 
     function closeModal() { document.getElementById('botModal').style.display = 'none'; }
-
-    const dict = {
-        az: { about: "Mən <b>ThisMaga</b>, innovativ botlar və rəqəmsal həllər üzrə ixtisaslaşmış bir tərtibatçıyam. Texnologiyanı gündəlik həyata inteqrasiya edərək işləri asanlaşdırmağı hədəfləyirəm.", s1: "Zəng göndərmə xidməti...", s2: "Referans və Hədiyyə sistemi...", online: "Aktiv", btn: "Botu Başlat" },
-        tr: { about: "Ben <b>ThisMaga</b>, yenilikçi botlar ve dijital çözümler konusunda uzmanlaşmış bir geliştiriciyim. Teknolojiyi günlük hayata entegre etmeyi hedefliyorum.", s1: "Arama gönderme hizmeti...", s2: "Referans ve Hediye sistemi...", online: "Aktif", btn: "Botu Başlat" },
-        en: { about: "I am <b>ThisMaga</b>, a developer specialized in innovative bots and digital solutions. I aim to simplify life by integrating technology.", s1: "Call sending service...", s2: "Referral & Gift system...", online: "Active", btn: "Launch Bot" }
-    };
-
-    function changeLang(l) {
-        curLang = l;
-        document.getElementById('about-text').innerHTML = dict[l].about;
-        document.getElementById('bot1-sm').innerText = dict[l].s1;
-        document.getElementById('bot2-sm').innerText = dict[l].s2;
-        document.getElementById('mOnline').innerText = dict[l].online;
-        document.getElementById('mLink').innerText = dict[l].btn;
-        document.querySelectorAll('.lang-dot').forEach(d => {
-            d.classList.remove('active');
-            if(d.innerText.toLowerCase() == l) d.classList.add('active');
-        });
-    }
-
     window.onclick = function(e) { if(e.target == document.getElementById('botModal')) closeModal(); }
 </script>
 
